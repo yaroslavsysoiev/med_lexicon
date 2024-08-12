@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedLexicon</title>
-</head>
-<body>
-    <h1>Word List</h1>
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>E-dictionary</h1>
+    <p>Welcome to the place where you can learn new words!</p>
+    <h2>Dynamic content</h2>
+    <p>The source has the following record counts:</p>
     <ul>
-        {% for word in words %}
-            <li>{{ word.text }} - {{ word.translation_uk }} - {{ word.translation_pl }}</li>
-        {% endfor %}
+        <li><strong>Words:</strong> {{ num_words }}</li>
+        <li><strong>Employees assigned:</strong> {{ num_workers }}</li>
+        <li><strong>Categories:</strong> {{ num_categories }}</li>
     </ul>
-    <a href="{% url 'medlexicon:wordformat-list' %}">Add New Word</a>
-</body>
-</html>
+
+    <p>You have visited this page
+        {{ num_visits }} time{{ num_visits|pluralize }}.
+    </p>
+
+{% endblock %}

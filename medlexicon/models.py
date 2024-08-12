@@ -36,10 +36,9 @@ class Word(models.Model):
     text = models.CharField(max_length=200)
     translation_uk = models.CharField(max_length=200)
     translation_pl = models.CharField(max_length=200)
-    date_added = models.DateTimeField(auto_now_add=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     word_format = models.ForeignKey(WordFormat, on_delete=models.CASCADE)
     worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.text

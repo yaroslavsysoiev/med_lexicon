@@ -15,6 +15,7 @@ def index(request):
     num_words = Word.objects.count()
     num_categories = Category.objects.count()
     num_word_formats = WordFormat.objects.count()
+    num_workers = Worker.objects.count()
 
     num_visits = request.session.get("num_visits", 0)
     request.session["num_visits"] = num_visits + 1
@@ -23,6 +24,7 @@ def index(request):
         "num_words": num_words,
         "num_categories": num_categories,
         "num_word_formats": num_word_formats,
+        "num_workers": num_workers,
         "num_visits": num_visits + 1,
     }
 
@@ -55,8 +57,8 @@ class CategoryDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class WordFormatListView(LoginRequiredMixin, generic.ListView):
     model = WordFormat
-    context_object_name = "word_format_list"
-    template_name = "words/wordformat_list.html"
+    context_object_name = "wordformat_list"
+    template_name = "templates/medlexicon/wordformat_list.html"
     paginate_by = 5
 
 
@@ -81,6 +83,7 @@ class WordListView(LoginRequiredMixin, generic.ListView):
     model = Word
     paginate_by = 10
     queryset = Word.objects.select_related("word_format", "category", "worker")
+    success_url = reverse_lazy("medlexicon:wordformat-list")
 
 
 class WordDetailView(LoginRequiredMixin, generic.DetailView):
@@ -107,7 +110,7 @@ class WordDeleteView(LoginRequiredMixin, generic.DeleteView):
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     paginate_by = 5
-    context_object_name = "worker_list"
+    context_object_name = "worker-list"
     template_name = "medlexicon/worker_list.html"
 
 
@@ -121,7 +124,7 @@ class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
     form_class = WorkerCreationForm
     template_name = "medlexicon/worker_form.html"
-    success_url = reverse_lazy("your_app:worker-list")
+    success_url = reverse_lazy("medlexicon:worker-list")
 
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):

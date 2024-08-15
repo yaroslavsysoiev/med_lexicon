@@ -46,7 +46,6 @@ class WorkerCreationForm(UserCreationForm):
         model = get_user_model()
         fields = UserCreationForm.Meta.fields + ("first_name", "last_name")
 
-    # Пример валидации поля, если потребуется
     def clean_first_name(self):
         first_name = self.cleaned_data["first_name"]
         if len(first_name) < 2:

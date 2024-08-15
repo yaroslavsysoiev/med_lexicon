@@ -6,7 +6,8 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Worker, Word, Category, WordFormat
-from .forms import WordCreationForm, WordUpdateForm, CategoryForm, WordFormatForm, WorkerCreationForm
+from .forms import WordCreationForm, WordUpdateForm, CategoryForm, WordFormatForm, WorkerCreationForm, \
+    WorkerPhoneUpdateForm
 
 
 def index(request):
@@ -41,18 +42,18 @@ class CategoryListView(LoginRequiredMixin, generic.ListView):
 class CategoryCreateView(LoginRequiredMixin, generic.CreateView):
     model = Category
     form_class = CategoryForm
-    success_url = reverse_lazy("words:category-list")
+    success_url = reverse_lazy("medlexicon:category-list")
 
 
 class CategoryUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Category
     form_class = CategoryForm
-    success_url = reverse_lazy("words:category-list")
+    success_url = reverse_lazy("medlexicon:category-list")
 
 
 class CategoryDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Category
-    success_url = reverse_lazy("words:category-list")
+    success_url = reverse_lazy("medlexicon:category-list")
 
 
 class WordFormatListView(LoginRequiredMixin, generic.ListView):
@@ -65,18 +66,18 @@ class WordFormatListView(LoginRequiredMixin, generic.ListView):
 class WordFormatCreateView(LoginRequiredMixin, generic.CreateView):
     model = WordFormat
     form_class = WordFormatForm
-    success_url = reverse_lazy("words:wordformat-list")
+    success_url = reverse_lazy("medlexicon:wordformat-list")
 
 
 class WordFormatUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = WordFormat
     form_class = WordFormatForm
-    success_url = reverse_lazy("words:wordformat-list")
+    success_url = reverse_lazy("medlexicon:wordformat-list")
 
 
 class WordFormatDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = WordFormat
-    success_url = reverse_lazy("words:wordformat-list")
+    success_url = reverse_lazy("medlexicon:wordformat-list")
 
 
 class WordListView(LoginRequiredMixin, generic.ListView):
@@ -93,13 +94,13 @@ class WordDetailView(LoginRequiredMixin, generic.DetailView):
 class WordCreateView(LoginRequiredMixin, generic.CreateView):
     model = Word
     form_class = WordCreationForm
-    success_url = reverse_lazy("words:word-list")
+    success_url = reverse_lazy("medlexicon:word-list")
 
 
 class WordUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Word
     form_class = WordUpdateForm
-    success_url = reverse_lazy("words:word-list")
+    success_url = reverse_lazy("medlexicon:word-list")
 
 
 class WordDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -110,7 +111,7 @@ class WordDeleteView(LoginRequiredMixin, generic.DeleteView):
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     paginate_by = 5
-    context_object_name = "worker-list"
+    context_object_name = "worker_list"
     template_name = "medlexicon/worker_list.html"
 
 
@@ -124,6 +125,12 @@ class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
     form_class = WorkerCreationForm
     template_name = "medlexicon/worker_form.html"
+    success_url = reverse_lazy("medlexicon:worker-list")
+
+
+class WorkerPhoneUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Worker
+    form_class = WorkerPhoneUpdateForm
     success_url = reverse_lazy("medlexicon:worker-list")
 
 

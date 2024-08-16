@@ -35,7 +35,7 @@ def index(request):
 class CategoryListView(LoginRequiredMixin, generic.ListView):
     model = Category
     context_object_name = "category_list"
-    template_name = "words/category_list.html"
+    template_name = "medlexicon/category_list.html"
     paginate_by = 5
 
 
@@ -45,14 +45,21 @@ class CategoryCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = reverse_lazy("medlexicon:category-list")
 
 
+class CategoryDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Category
+    template_name = "medlexicon/category_detail.html"
+
+
 class CategoryUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Category
-    form_class = CategoryForm
+    fields = ['category_name']
+    template_name = 'medlexicon/category_form.html'
     success_url = reverse_lazy("medlexicon:category-list")
 
 
 class CategoryDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Category
+    template_name = "medlexicon/category_confirm_delete.html"
     success_url = reverse_lazy("medlexicon:category-list")
 
 

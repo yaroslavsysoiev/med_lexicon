@@ -2,21 +2,20 @@
 
 {% block content %}
   <h1>
-    Word list
+    Category List
     <a href="{% url 'medlexicon:category-create' %}" class="btn btn-primary link-to-page">
-      Create
+      Create Category
     </a>
   </h1>
-  {% if word_list %}
+  {% if category_list %}
     <ul>
-      {% for word in word_list %}
+      {% for category in category_list %}
         <li>
-          <a href="{% url "medlexicon:word-detail" pk=word.id %} ">{{ word.id }}</a>
-          {{ word.translation_uk }} ({{ word.worker.username }})
+          <a href="{% url 'medlexicon:category-detail' pk=category.id %}">{{ category.category_name }}</a>
         </li>
       {% endfor %}
     </ul>
   {% else %}
-    <p>There are no words</p>
+    <p>There are no categories</p>
   {% endif %}
 {% endblock %}

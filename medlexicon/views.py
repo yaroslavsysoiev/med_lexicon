@@ -96,6 +96,10 @@ class WordCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = WordCreationForm
     success_url = reverse_lazy("medlexicon:word-list")
 
+    def form_valid(self, form):
+        form.instance.worker = self.request.user
+        return super().form_valid(form)
+
 
 class WordUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Word

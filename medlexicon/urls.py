@@ -25,7 +25,7 @@ from medlexicon.views import (
 )
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("", index, name="index"),
     path("words/", WordListView.as_view(), name="word-list"),
     path("words/<int:pk>/", WordDetailView.as_view(), name="word-detail"),
     path("words/create/", WordCreateView.as_view(), name="word-create"),

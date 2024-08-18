@@ -147,7 +147,7 @@ class WorkerPhoneUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
-    success_url = reverse_lazy("")
+    success_url = reverse_lazy("medlexicon:worker-list")
 
 
 @login_required

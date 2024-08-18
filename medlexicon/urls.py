@@ -30,13 +30,16 @@ urlpatterns = [
     path("words/<int:pk>/", WordDetailView.as_view(), name="word-detail"),
     path("words/create/", WordCreateView.as_view(), name="word-create"),
     path("words/<int:pk>/update/", WordUpdateView.as_view(), name="word-update"),
-    path("words/<int:pk>/delete/", WordDeleteView.as_view(), name="word-delete"),
+    path(
+        "words/<int:pk>/delete/", WordDeleteView.as_view(), name="word-delete"
+    ),
     path("categories/", CategoryListView.as_view(), name="category-list"),
     path("categories/create/", CategoryCreateView.as_view(), name="category-create"),
     path("categories/<int:pk>/", CategoryDetailView.as_view(), name="category-detail"),
     path("categories/<int:pk>/update/", CategoryUpdateView.as_view(), name="category-update"),
     path("categories/<int:pk>/delete/", CategoryDeleteView.as_view(), name="category-delete"),
-    path("wordformats/", WordFormatListView.as_view(), name="wordformat-list"),
+    path(
+        "wordformats/", WordFormatListView.as_view(), name="wordformat-list"),
     path("wordformats/create/", WordFormatCreateView.as_view(), name="wordformat-create"),
     path(
         "wordformats/<int:pk>/update/",

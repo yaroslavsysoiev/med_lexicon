@@ -93,6 +93,12 @@ class WordListView(LoginRequiredMixin, generic.ListView):
     queryset = Word.objects.select_related("word_format", "category", "worker")
     success_url = reverse_lazy("medlexicon:wordformat-list")
 
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            return Word.objects.filter(text__icontains=query)
+        return super().get_queryset()
+
 
 class WordDetailView(LoginRequiredMixin, generic.DetailView):
     model = Word

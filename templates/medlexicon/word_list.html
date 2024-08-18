@@ -12,7 +12,7 @@
       {% for word in word_list %}
         <li>
           <a href="{% url "medlexicon:word-detail" pk=word.id %} ">{{ word.id }}</a>
-          {{ word.translation_uk }} ({{ word.worker.username }})
+          {{ word.text}} ({{ word.category }})
         </li>
       {% endfor %}
     </ul>

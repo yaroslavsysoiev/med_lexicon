@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Word list
+    <a href="{% url 'medlexicon:word-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+  {% if word_list %}
+    <ul>
+      {% for word in word_list %}
+        <li>
+          <a href="{% url "medlexicon:word-detail" pk=word.id %} ">{{ word.text}}</a>
+          ({{ word.translation_uk }})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no words</p>
+  {% endif %}
+{% endblock %}

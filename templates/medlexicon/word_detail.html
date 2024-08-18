@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Word: {{ word.text }}</h1>
+    <p><strong>Text:</strong> {{ word.text }}</p>
+    <p><strong>Translation (UK):</strong> {{ word.translation_uk }}</p>
+    <p><strong>Translation (PL):</strong> {{ word.translation_pl }}</p>
+    <p><strong>Category:</strong> {{ word.category.category_name }}</p>
+    <p><strong>Format:</strong> {{ word.word_format.format_name }}</p>
+    <p><strong>Worker:</strong> {{ word.worker.username }} ({{ word.worker.first_name }} {{ word.worker.last_name }})</p>
+
+    <a href="{% url 'medlexicon:word-update' word.id %}" class="btn btn-primary">Edit Word</a>
+    <form action="{% url 'medlexicon:word-delete' word.id %}" method="post" style="display: inline;">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Delete Word</button>
+    </form>
+
+    <a href="{% url 'medlexicon:word-list' %}" class="btn btn-secondary">Back to Words</a>
+  </div>
+{% endblock %}

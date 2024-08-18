@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Category List
+    <a href="{% url 'medlexicon:category-create' %}" class="btn btn-primary link-to-page">
+      Create Category
+    </a>
+  </h1>
+  {% if category_list %}
+    <ul>
+      {% for category in category_list %}
+        <li>
+          <a href="{% url 'medlexicon:category-detail' pk=category.id %}">{{ category.category_name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no categories</p>
+  {% endif %}
+{% endblock %}

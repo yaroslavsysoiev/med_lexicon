@@ -96,6 +96,7 @@ class WordListView(LoginRequiredMixin, generic.ListView):
 
 class WordDetailView(LoginRequiredMixin, generic.DetailView):
     model = Word
+    template_name = "medlexicon/word_detail.html"
 
 
 class WordCreateView(LoginRequiredMixin, generic.CreateView):
@@ -116,7 +117,7 @@ class WordUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class WordDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Word
-    success_url = reverse_lazy("words:word-list")
+    success_url = reverse_lazy("medlexicon:word-list")
 
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):

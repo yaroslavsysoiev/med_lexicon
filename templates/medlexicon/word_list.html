@@ -1,22 +1,45 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Word List {% endblock title %}
+
+{% block body %} class="index-page bg-gray-200" {% endblock body %}
 
 {% block content %}
-  <h1>
-    Word list
-    <a href="{% url 'medlexicon:word-create' %}" class="btn btn-primary link-to-page">
-      Create
-    </a>
-  </h1>
-  {% if word_list %}
-    <ul>
-      {% for word in word_list %}
-        <li>
-          <a href="{% url "medlexicon:word-detail" pk=word.id %} ">{{ word.text}}</a>
-          ({{ word.translation_uk }})
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>There are no words</p>
-  {% endif %}
+<header class="header-2" style="padding: 60px 0; background-image: url('{% static 'img/curved-images/curved.jpg' %}'); background-size: cover; background-position: center;">
+  <div class="container text-center">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h1 class="text-white mb-3" style="font-size: 3rem; line-height: 1.2;">Word List</h1>
+        <p class="lead text-white" style="font-size: 1.25rem; line-height: 1.5;">Explore the list of words and their translations.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="pt-5 pb-4" id="word-list">
+  <div class="container">
+    <h1 class="mb-4">
+      Word List
+      <a href="{% url 'medlexicon:word-create' %}" class="btn btn-primary link-to-page ms-2">
+        Create
+      </a>
+    </h1>
+    {% if word_list %}
+      <ul class="list-unstyled">
+        {% for word in word_list %}
+          <li class="word-item mb-3 p-3 border rounded shadow-sm">
+            <a href="{% url "medlexicon:word-detail" pk=word.id %}" class="word-link text-decoration-none text-dark">
+              <h5 class="word-text mb-1">{{ word.text }}</h5>
+              <span class="word-translation text-muted">{{ word.translation_uk }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>There are no words</p>
+    {% endif %}
+  </div>
+</section>
+
 {% endblock %}

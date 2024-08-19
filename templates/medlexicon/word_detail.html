@@ -1,21 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="container">
-    <h1>Word: {{ word.text }}</h1>
-    <p><strong>Text:</strong> {{ word.text }}</p>
-    <p><strong>Translation (UK):</strong> {{ word.translation_uk }}</p>
-    <p><strong>Translation (PL):</strong> {{ word.translation_pl }}</p>
-    <p><strong>Category:</strong> {{ word.category.category_name }}</p>
-    <p><strong>Format:</strong> {{ word.word_format.format_name }}</p>
-    <p><strong>Worker:</strong> {{ word.worker.username }} ({{ word.worker.first_name }} {{ word.worker.last_name }})</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <!-- Заголовок страницы -->
+      <h1 class="mb-4">Word Details: <span class="text-primary">{{ word.text }}</span></h1>
 
-    <a href="{% url 'medlexicon:word-update' word.id %}" class="btn btn-primary">Edit Word</a>
-    <form action="{% url 'medlexicon:word-delete' word.id %}" method="post" style="display: inline;">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-danger">Delete Word</button>
-    </form>
+      <!-- Информация о слове -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="card-title">{{ word.text }}</h4>
+          <p class="card-text"><strong>Translation (UK):</strong> {{ word.translation_uk }}</p>
+          <p class="card-text"><strong>Translation (PL):</strong> {{ word.translation_pl }}</p>
+          <p class="card-text"><strong>Category:</strong> {{ word.category.category_name }}</p>
+          <p class="card-text"><strong>Format:</strong> {{ word.word_format.format_name }}</p>
+          <p class="card-text"><strong>Worker:</strong> {{ word.worker.username }} ({{ word.worker.first_name }} {{ word.worker.last_name }})</p>
+        </div>
+      </div>
 
-    <a href="{% url 'medlexicon:word-list' %}" class="btn btn-secondary">Back to Words</a>
+      <!-- Кнопки действий -->
+      <div class="d-flex justify-content-between">
+        <a href="{% url 'medlexicon:word-update' word.id %}" class="btn btn-primary">Edit Word</a>
+        <form action="{% url 'medlexicon:word-delete' word.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Delete Word</button>
+        </form>
+      </div>
+
+      <!-- Кнопка возврата к списку -->
+      <a href="{% url 'medlexicon:word-list' %}" class="btn btn-secondary mt-3">Back to Words</a>
+    </div>
   </div>
+</div>
 {% endblock %}

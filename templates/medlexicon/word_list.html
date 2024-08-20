@@ -17,6 +17,16 @@
   </div>
 </header>
 
+<!-- Search Section -->
+<section class="pt-4 pb-2 bg-light">
+  <div class="container">
+    <form method="GET" action="{% url 'medlexicon:word-list' %}" class="d-flex justify-content-center">
+      <input type="text" name="q" class="form-control form-control-lg me-2" placeholder="Search words..." value="{{ request.GET.q }}">
+      <button type="submit" class="btn btn-lg btn-primary">Search</button>
+    </form>
+  </div>
+</section>
+
 <section class="pt-5 pb-4" id="word-list">
   <div class="container">
     <h1 class="mb-4">
@@ -37,7 +47,7 @@
         {% endfor %}
       </ul>
     {% else %}
-      <p>There are no words</p>
+      <p class="text-center text-muted">No words found matching your query.</p>
     {% endif %}
   </div>
 </section>

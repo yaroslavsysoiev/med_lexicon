@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -87,16 +87,22 @@ class WordFormatDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("medlexicon:wordformat-list")
 
 
-class WordListView(LoginRequiredMixin, generic.ListView):
+class WordListView(generic.ListView):
     model = Word
-    paginate_by = 10
-    queryset = Word.objects.select_related("word_format", "category", "worker")
-    success_url = reverse_lazy("medlexicon:wordformat-list")
+    template_name = 'medlexicon/word_list.html'
+    context_object_name = 'word_list'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            return Word.objects.filter(text__icontains=query)
+        return Word.objects.all()
 
 
-class WordDetailView(LoginRequiredMixin, generic.DetailView):
+class WordDetailView(generic.DetailView):
     model = Word
-    template_name = "medlexicon/word_detail.html"
+    template_name = 'medlexicon/word_detail.html'
+    context_object_name = 'word'
 
 
 class WordCreateView(LoginRequiredMixin, generic.CreateView):

@@ -98,6 +98,12 @@ class WordListView(generic.ListView):
             return Word.objects.filter(text__icontains=query)
         return Word.objects.all()
 
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            return Word.objects.filter(text__icontains=query)
+        return super().get_queryset()
+
 
 class WordDetailView(generic.DetailView):
     model = Word

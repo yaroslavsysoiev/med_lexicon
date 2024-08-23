@@ -1,7 +1,6 @@
 from django.test import TestCase
 from medlexicon.models import Word, Category, WordFormat, Worker
 from medlexicon.forms import (
-    WordCreationForm,
     WordUpdateForm,
     CategoryForm,
     WordFormatForm,

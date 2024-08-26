@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Username: {{ worker.username }}
+    <a href="{% url 'medlexicon:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+
+    <a href="{% url 'medlexicon:worker-update' pk=worker.id %}" class="btn btn-secondary link-to-page">
+      Update phone number
+    </a>
+  </h1>
+
+  <p><strong>First name:</strong> {{ worker.first_name }}</p>
+  <p><strong>Last name:</strong> {{ worker.last_name }}</p>
+  <p><strong>Email:</strong> {{ worker.email }}</p>
+  <p><strong>Phone number:</strong> {{ worker.phone_number }}</p>
+  <p><strong>Is active:</strong> {{ worker.is_active }}</p>
+
+  <div class="ml-3">
+    <h4>Words Created by {{ worker.username }}</h4>
+
+    {% for word in worker.word_set.all %}
+        <hr>
+        <p><strong>Text:</strong> {{ word.text }}</p>
+        <p><strong>Translation (Ukrainian):</strong> {{ word.translation_uk }}</p>
+        <p><strong>Translation (Polish):</strong> {{ word.translation_pl }}</p>
+        <p><strong>Category:</strong> {{ word.category.category_name }}</p>
+        <p><strong>Format:</strong> {{ word.word_format.format_name }}</p>
+        <p class="text-muted"><strong>Id:</strong> {{ word.id }}</p>
+
+    {% empty %}
+      <p>No words added!</p>
+    {% endfor %}
+  </div>
+{% endblock %}

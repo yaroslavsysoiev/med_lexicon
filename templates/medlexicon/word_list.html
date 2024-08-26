@@ -1,0 +1,66 @@
+{% extends 'layouts/base_sections.html' %}
+{% load static %}
+
+{% block title %} Word List {% endblock title %}
+
+{% block content %}
+
+<!-- Header Section -->
+<header class="header-2" style="padding: 60px 0; background-image: url('{% static 'img/curved-images/curved.jpg' %}'); background-size: cover; background-position: center;">
+  <div class="container text-center">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h1 class="text-white mb-3" style="font-size: 3rem; line-height: 1.2;">Word List</h1>
+        <p class="lead text-white" style="font-size: 1.25rem; line-height: 1.5;">Explore the list of words and their translations.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Search and Word List Section -->
+<section class="pt-5 pb-4 bg-light">
+  <div class="container">
+
+
+
+    <!-- Word List Section -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="mb-0">Word List</h2>
+      <a href="{% url 'medlexicon:word-create' %}" class="btn btn-primary">
+        Create New Word
+      </a>
+    </div>
+
+    {% if word_list %}
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th>Word</th>
+              <th>Translation</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for word in word_list %}
+              <tr>
+                <td>{{ word.text }}</td>
+                <td>{{ word.translation_uk }}</td>
+                <td>
+                  <a href="{% url 'medlexicon:word-detail' pk=word.id %}" class="btn btn-sm btn-info">View</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="text-center text-muted">No words found matching your query.</p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+{% endblock %}

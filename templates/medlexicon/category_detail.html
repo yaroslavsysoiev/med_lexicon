@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Category: {{ category.name }}</h1>
+    <p><strong>Description:</strong> {{ category.description }}</p>
+
+    <h2>Items in this category:</h2>
+    <ul>
+      {% if category.items.all %}
+        {% for item in category.items.all %}
+          <li>
+            <a href="{% url 'item_detail' item.id %}">{{ item.name }}</a> - {{ item.description }}
+          </li>
+        {% endfor %}
+      {% else %}
+        <li>No items found in this category.</li>
+      {% endif %}
+    </ul>
+
+    <a href="{% url 'medlexicon:category-update' category.id %}" class="btn btn-primary">Edit Category</a>
+    <form action="{% url 'medlexicon:category-delete' category.id %}" method="post" style="display: inline;">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Delete Category</button>
+    </form>
+
+    <a href="{% url 'medlexicon:category-list' %}" class="btn btn-secondary">Back to Categories</a>
+  </div>
+{% endblock %}

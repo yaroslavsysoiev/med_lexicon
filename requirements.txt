@@ -1,2 +1,12 @@
-django==5.1
-python-dotenv~=1.0.1
+asgiref==3.8.1
+beautifulsoup4==4.12.3
+bootstrap4==0.1.0
+crispy-bootstrap4==2024.1
+Django==5.1
+django-bootstrap4==24.3
+django-crispy-forms==2.3
+django-debug-toolbar==4.4.6
+python-dotenv==1.0.1
+soupsieve==2.5
+sqlparse==0.5.1
+tzdata==2024.1

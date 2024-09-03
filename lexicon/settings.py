@@ -93,11 +93,11 @@ WSGI_APPLICATION = 'lexicon.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': getenv('PGDATABASE'),
-        'USER': getenv('PGUSER'),
-        'PASSWORD': getenv('PGPASSWORD'),
-        'HOST': getenv('PGHOST'),
-        'PORT': getenv('PGPORT', 5432),
+        'NAME': 'med_lexicon_db',
+        'USER': 'med_lexicon_db_owner',
+        'PASSWORD': '9WLTEmpPAM6d',
+        'HOST': 'ep-summer-fog-a2fimjga.eu-central-1.aws.neon.tech',
+        'PORT': '5432',
         'OPTIONS': {
             'sslmode': 'require',
         },

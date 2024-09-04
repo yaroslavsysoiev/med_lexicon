@@ -11,9 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 from pathlib import Path
 import os
-from os import getenv
 from dotenv import load_dotenv
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,17 +89,17 @@ WSGI_APPLICATION = 'lexicon.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': getenv('PGDATABASE'),
-    'USER': getenv('PGUSER'),
-    'PASSWORD': getenv('PGPASSWORD'),
-    'HOST': getenv('PGHOST'),
-    'PORT': getenv('PGPORT', 5432),
-    'OPTIONS': {
-      'sslmode': 'require',
-    },
-  }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'med_lexicon_db',
+        'USER': 'med_lexicon_db_owner',
+        'PASSWORD': '9WLTEmpPAM6d',
+        'HOST': 'ep-summer-fog-a2fimjga.eu-central-1.aws.neon.tech',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
+    }
 }
 # db_from_env = dj_database_url.config(conn_max_age=500)
 # DATABASES["default"].update(db_from_env)

@@ -5,8 +5,8 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Worker, Word, Category, WordFormat
-from .forms import WordCreationForm, WordUpdateForm, CategoryForm, WordFormatForm, WorkerCreationForm, \
+from medlexicon.models import Worker, Word, Category, WordFormat
+from medlexicon.forms import WordCreationForm, WordUpdateForm, CategoryForm, WordFormatForm, WorkerCreationForm, \
     WorkerPhoneUpdateForm
 
 
@@ -97,6 +97,12 @@ class WordListView(generic.ListView):
         if query:
             return Word.objects.filter(text__icontains=query)
         return Word.objects.all()
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            return Word.objects.filter(text__icontains=query)
+        return super().get_queryset()
 
 
 class WordDetailView(generic.DetailView):

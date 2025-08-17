@@ -21,12 +21,18 @@ class Worker(AbstractUser):
 class Category(models.Model):
     category_name = models.CharField(max_length=100)
 
+    class Meta:
+        ordering = ['category_name']
+
     def __str__(self):
         return self.category_name
 
 
 class WordFormat(models.Model):
     format_name = models.CharField(max_length=100)
+
+    class Meta:
+        ordering = ['format_name']
 
     def __str__(self):
         return self.format_name

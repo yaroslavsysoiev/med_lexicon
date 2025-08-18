@@ -33,7 +33,7 @@ ALLOWED_HOSTS = [
 ]
 
 INTERNAL_IPS = [
-    "127.0.0.1",
+    # "127.0.0.1",  # Commented out for production
 ]
 
 # Application definition
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "debug_toolbar",
+    # "debug_toolbar",  # Commented out for production
     "crispy_forms",
     "crispy_bootstrap5",
     "medlexicon",
@@ -54,7 +54,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",  # Commented out for production
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

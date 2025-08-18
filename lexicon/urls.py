@@ -24,5 +24,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("medlexicon.urls", namespace="medlexicon")),
     path("accounts/", include("django.contrib.auth.urls")),
-    path("__debug__/", include("debug_toolbar.urls")),
+    # path("__debug__/", include("debug_toolbar.urls")),  # Commented out for production
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

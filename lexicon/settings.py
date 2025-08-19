@@ -24,7 +24,7 @@ load_dotenv()
 
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -140,21 +140,29 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-AUTH_USER_MODEL = 'medlexicon.Worker'
-
+# Static files configuration
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Setting for Whitenoise to serve static files in production
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Setting for Whitenoise to serve static files in production (disabled for development)
+# STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
+
+# WhiteNoise configuration (disabled for development)
+# WHITENOISE_USE_FINDERS = True
+# WHITENOISE_AUTOREFRESH = True
+# WHITENOISE_ROOT = BASE_DIR / "staticfiles"
+# WHITENOISE_INDEX_FILE = True
+
+# Serve static files in development
+if DEBUG:
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'medlexicon.Worker'

@@ -25,4 +25,9 @@ urlpatterns = [
     path("", include("medlexicon.urls", namespace="medlexicon")),
     path("accounts/", include("django.contrib.auth.urls")),
     # path("__debug__/", include("debug_toolbar.urls")),  # Commented out for production
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+
+# Serve static files in development
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])

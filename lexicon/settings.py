@@ -19,6 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
+
 load_dotenv()
 
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
@@ -32,7 +33,7 @@ ALLOWED_HOSTS = [
 ]
 
 INTERNAL_IPS = [
-    "127.0.0.1",
+    # "127.0.0.1",  # Commented out for production
 ]
 
 # Application definition
@@ -158,16 +159,6 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # Serve static files in development
 if DEBUG:
     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-    # Enable debug toolbar for development
-    INSTALLED_APPS.append("debug_toolbar")
-    MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")
-else:
-    # Production settings
-    STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
-    WHITENOISE_USE_FINDERS = True
-    WHITENOISE_AUTOREFRESH = True
-    WHITENOISE_ROOT = BASE_DIR / "staticfiles"
-    WHITENOISE_INDEX_FILE = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

@@ -1,4 +1,4 @@
-// Масив перекладів для трьох мов
+// Translation array for three languages
 var arrLang = {
   'en': {
     'about': 'About Us',
@@ -12,15 +12,15 @@ var arrLang = {
     'search_words': 'Search words...'
   },
   'uk': {
-    'about': 'Про нас',
-    'goods': 'Товари',
-    'benefits': 'Переваги',
-    'contact': 'Контакти',
-    'home': 'Головна',
-    'all_employees': 'Всі співробітники',
-    'all_words': 'Всі слова',
-    'all_categories': 'Всі категорії',
-    'search_words': 'Пошук слів...'
+    'about': 'About Us',
+    'goods': 'Goods',
+    'benefits': 'Benefits',
+    'contact': 'Contact',
+    'home': 'Home',
+    'all_employees': 'All employees',
+    'all_words': 'All words',
+    'all_categories': 'All categories',
+    'search_words': 'Search words...'
   },
   'pl': {
     'about': 'O nas',
@@ -35,7 +35,7 @@ var arrLang = {
   }
 };
 
-// Функція для перекладу тексту
+// Function to translate text
 function translateText(lang) {
   $('.lang').each(function(index, item) {
     var key = $(this).attr('key');
@@ -44,11 +44,11 @@ function translateText(lang) {
     }
   });
   
-  // Зберігаємо вибрану мову в localStorage
+  // Save selected language in localStorage
   localStorage.setItem('selectedLanguage', lang);
 }
 
-// Функція для встановлення мови при завантаженні сторінки
+// Function to set language on page load
 function setLanguageOnLoad() {
   var savedLang = localStorage.getItem('selectedLanguage');
   if (savedLang && arrLang[savedLang]) {
@@ -56,13 +56,13 @@ function setLanguageOnLoad() {
   }
 }
 
-// Обробник кліків на кнопки перекладу
+// Click handler for translation buttons
 $(document).ready(function() {
   $('.translate').click(function() {
     var lang = $(this).attr('id');
     translateText(lang);
   });
   
-  // Встановлюємо мову при завантаженні сторінки
+  // Set language on page load
   setLanguageOnLoad();
 }); 

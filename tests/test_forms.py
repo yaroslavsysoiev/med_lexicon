@@ -27,8 +27,8 @@ class FormTests(TestCase):
         )
         self.word = Word.objects.create(
             text="Medicine",
-            translation_uk="Ліки",
-            translation_pl="Lekarstwo",
+            translation_uk="Medicine",
+            translation_pl="Lek",
             category=self.category,
             word_format=self.word_format,
             worker=self.worker
@@ -37,7 +37,7 @@ class FormTests(TestCase):
     def test_word_update_form_valid(self):
         form_data = {
             "text": "Updated Medicine",
-            "translation_uk": "Оновлені ліки",
+            "translation_uk": "Updated Medicine",
             "translation_pl": "Zaktualizowane lekarstwo",
             "word_format": self.word_format.id,
             "category": self.category.id

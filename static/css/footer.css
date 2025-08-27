@@ -1,0 +1,30 @@
+/* Simple Footer Styles */
+.footer {
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.footer-content {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.footer-content a {
+    color: #495057;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-content a:hover {
+    color: #212529;
+}
+
+/* Responsive */
+@media (max-width: 575.98px) {
+    .footer {
+        padding: 1.5rem 0;
+    }
+}

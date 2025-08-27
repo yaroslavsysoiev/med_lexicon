@@ -47,8 +47,8 @@ class ModelsTests(TestCase):
         )
         word = Word.objects.create(
             text="Medicine",
-            translation_uk="Ліки",
-            translation_pl="Lekarstwo",
+            translation_uk="Medicine",
+            translation_pl="Lek",
             category=category,
             word_format=word_format,
             worker=worker
@@ -82,7 +82,7 @@ class ModelsTests(TestCase):
         )
         word = Word.objects.create(
             text="Health",
-            translation_uk="Здоров'я",
+            translation_uk="Health",
             translation_pl="Zdrowie",
             category=category,
             word_format=word_format,

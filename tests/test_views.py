@@ -93,7 +93,7 @@ class PrivateWordTests(TestCase):
         word_format = WordFormat.objects.create(format_name="Noun")
         word = Word.objects.create(
             text="Health",
-            translation_uk="Здоров'я",
+            translation_uk="Health",
             translation_pl="Zdrowie",
             category=category,
             word_format=word_format,
@@ -116,7 +116,7 @@ class PrivateWordTests(TestCase):
 
         response = self.client.post(WORD_CREATE_URL, {
             "text": "Medicine",
-            "translation_uk": "Медицина",
+            "translation_uk": "Medicine",
             "translation_pl": "Medycyna",
             "category": category.id,
             "word_format": word_format.id
